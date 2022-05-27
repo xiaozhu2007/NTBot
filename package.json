@@ -1,0 +1,46 @@
+{
+    "name": "ntbot",
+    "version": "1.0.0-patch-1",
+    "description": "NTBot, a Minecraft bot based on Mineflayer.",
+    "main": "main.js",
+    "dependencies": {
+        "dateformat": "^4.5.1",
+        "delay": "^5.0.0",
+        "dotenv": "^10.0.0",
+        "jsonfile": "^6.1.0",
+        "mineflayer": "^3.8.0",
+        "mineflayer-pathfinder": "^1.6.3",
+        "node-fetch": "^2.6.1",
+        "vec3": "^0.1.7",
+        "readline": "^1.3.0"
+    },
+    "devDependencies": {
+        "commitizen": "^4.2.4"
+    },
+    "scripts": {
+        "start": "node main.js",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "debug": "DEBUG=\"minecraft-protocol\" node main.js"
+    },
+    "author": {
+        "url": "https://github.com/xiaozhu2007",
+        "email": "lz19986912007@163.com",
+        "name": "xiaozhu2007"
+    },
+    "contributors": [
+        "AGDDoS-bot <3356136957@qq.com>"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/xiaozhu2007/NTBot"
+    },
+    "license": "WTFPL",
+    "homepage": "https://github.com/xiaozhu2007/NTBot#readme",
+    "bugs": {
+        "url": "https://github.com/xiaozhu2007/NTBot/issues"
+    },
+    "funding": {
+        "type": "individual",
+        "url": "https://xiaozhu2007.github.io/"
+    }
+}

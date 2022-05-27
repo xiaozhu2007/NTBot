@@ -1,0 +1,5 @@
+- 快速上手
+  - [主页](README.md)
+  - [FAQ](FAQ.md)
+  - [贡献](CONTRIBUTING.md)
+  - [历史](history.md)
