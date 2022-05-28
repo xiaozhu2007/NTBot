@@ -1,18 +1,18 @@
 {
     "name": "ntbot",
-    "version": "1.0.0-patch-1",
+    "version": "1.0.0-beta.1",
     "description": "NTBot, a Minecraft bot based on Mineflayer.",
     "main": "main.js",
     "dependencies": {
         "dateformat": "^4.5.1",
         "delay": "^5.0.0",
-        "dotenv": "^10.0.0",
+        "dotenv": "^16.0.0",
         "jsonfile": "^6.1.0",
-        "mineflayer": "^3.8.0",
+        "mineflayer": "^4.3.0",
         "mineflayer-pathfinder": "^1.6.3",
-        "node-fetch": "^2.6.1",
-        "vec3": "^0.1.7",
-        "readline": "^1.3.0"
+        "node-fetch": "^3.2.4",
+        "readline": "^1.3.0",
+        "vec3": "^0.1.7"
     },
     "devDependencies": {
         "commitizen": "^4.2.4"
