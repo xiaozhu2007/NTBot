@@ -7,6 +7,7 @@ ENV MC_USERNAME="anonymous"
 ENV MC_PASSWORD="password"
 ENV LOGIN_PASSWORD="password"
 ENV LOGIN="no"
+ENV MC_AUTH="mojang"
 
 COPY package*.json ./
 
