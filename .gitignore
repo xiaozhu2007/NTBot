@@ -27,5 +27,5 @@ config.*.json
 .vscode/
 .idea/
 
-start.sh
+publish.sh
 launcher_accounts.json
