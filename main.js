@@ -3,7 +3,12 @@ const delay = require('delay');
 const mineflayer = require('mineflayer');
 const pathfinder = require('mineflayer-pathfinder').pathfinder;
 /***
-       Powered By NTBot
+ _   _ _____ ____        _   
+| \ | |_   _| __ )  ___ | |_ 
+|  \| | | | |  _ \ / _ \| __|
+| |\  | | | | |_) | (_) | |_ 
+|_| \_| |_| |____/ \___/ \__|
+              Powered By NTBot
 **/
 function start() {
   const bot = mineflayer.createBot({
@@ -16,10 +21,8 @@ function start() {
     verbose: true
   });
 
-  console.log('Connecting to [' + process.env.MC_HOST + ':' + process.env.MC_PORT + '] (' + bot.version + ')');
-
+  console.log('Connecting to [%s:%s](%s)', process.env.MC_HOST, process.env.MC_PORT, bot.version);
   bot.loadPlugin(pathfinder);
-
   require('./src/bot-extension')(bot);
 
   function chatAddPattern(bot) {
@@ -48,28 +51,27 @@ function start() {
     chatAddPattern(bot);
 
     // 加载模块
-    // require('./src/module-action-move')(bot); //报错
-    // require('./src/module-action-follow')(bot);
-    require('./src/module-logger')(bot); // Better Logger
-    require('./src/module-chat-hi')(bot); // say Hello to other players
-    require('./src/module-chat-death')(bot); // Log when bot died
-    require('./src/module-chat-countdown')(bot); // Count Down
-    require('./src/module-auto-chat') // Auto Response
-    // require('./src/module-chat-google')(bot); // Search on Google
-    require('./src/module-chat-baidu')(bot); // Search on Baidu
-    require('./src/module-data-record')(bot); // Data Record
-    require('./src/module-update')(bot); // Nothing.
-    require('./src/module-help')(bot); // The main help menu
-    require('./src/module-login')(bot); // Auto Login
+    // require('./modules/module-action-move')(bot); //报错
+    // require('./modules/module-action-follow')(bot);
+    require('./modules/module-logger')(bot); // Better Logger
+    require('./modules/module-chat-hi')(bot); // say Hello to other players
+    require('./modules/module-chat-death')(bot); // Log when bot died
+    require('./modules/module-chat-countdown')(bot); // Count Down
+    require('./modules/module-auto-chat') // Auto Response
+    require('./modules/module-chat-google')(bot); // Search on Google
+    require('./modules/module-chat-baidu')(bot); // Search on Baidu
+    require('./modules/module-data-record')(bot); // Data Record
+    require('./modules/module-update')(bot); // Nothing.
+    require('./modules/module-help')(bot); // The main help menu
+    require('./modules/module-login')(bot); // Auto Login
   });
-
   bot.on('error', err => console.log(err));
 }
 
 process.on('uncaughtException', (err) => {
   console.log('[process.uncaughtException] ' + err);
-  // bot.log('[process.uncaughtException] Trying reconnection 1 min later...');
-  // delay(60000).then(() => { start(); });
+  bot.log('[process.uncaughtException] Trying reconnection 30s later...');
+  delay(30000).then(() => { start(); });
 });
 
 try {
