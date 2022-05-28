@@ -1,6 +1,6 @@
 {
     "name": "ntbot",
-    "version": "1.0.0-beta.1",
+    "version": "1.0.0-beta.2",
     "description": "NTBot, a Minecraft bot based on Mineflayer.",
     "main": "main.js",
     "dependencies": {
