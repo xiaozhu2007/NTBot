@@ -2,12 +2,13 @@ const dateformat = require('dateformat');
 const delay = require('delay');
 const readline = require('readline');
 
-module.exports = function(bot) {
+module.exports = function (bot) {
   this.bot = bot;
   this.bot.hasInterrupt = false;
-  
+
   bot.on('login', () => {
-    bot.log('[bot-extension.open] 插件系统启动');
+    bot.log('[bot-extension.init] 插件系统初始化成功');
+    bot.log('[bot-extension.start] 插件系统启动');
     bot.init_readline();
     bot.log('[bot-readline.init] ReadLine初始化成功');
 
@@ -22,8 +23,8 @@ module.exports = function(bot) {
 
   // 输入处理
   this.bot.init_readline = () => {
-    this.rl = readline.createInterface({input: process.stdin, output: process.stdout});
-    this.rl.setPrompt('> '); //输入头
+    this.rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+    this.rl.setPrompt('NTBot> '); //输入头
 
     // 输入信息即发送
     this.rl.on('line', (line) => {
@@ -33,17 +34,17 @@ module.exports = function(bot) {
     this.rl.on('SIGINT', () => {
       this.bot.log('[bot.readline] SIGINT 退出中');
       this.bot.hasInterrupt = true;
-      delay(1000).then(() => { 
-        this.bot.quit();
+      delay(500).then(() => {
+        this.bot.quit(); // Exit the server.
       });
     })
   }
-  
+
   this.bot.close_readline = () => {
     this.rl.close();
   }
 
-  // prompt处理
+  // Prompt处理
   this.bot.log = (...args) => {
     readline.cursorTo(process.stdout, 0);
 
@@ -57,7 +58,7 @@ module.exports = function(bot) {
       this.rl.prompt(true);
   }
 
-//从jmes形式的信息中只抽出文本成分并以字符串形式返回
+  //从jmes形式的信息中只抽出文本成分并以字符串形式返回
   this.bot.jmes_to_text = (jmes) => {
     var message = '';
     if (jmes.text)
@@ -70,7 +71,7 @@ module.exports = function(bot) {
     return message;
   }
 
-//加入防止同一信息循环发送、短时间内大量发送等措施的聊天发送方法
+  //加入防止同一信息循环发送、短时间内大量发送等措施的聊天发送方法
   this.safechat_send_text_cache = [];
   this.safechat_last_send_time = new Date().getTime();
   this.safechat_continuous_count = 0;
@@ -87,17 +88,17 @@ module.exports = function(bot) {
 
     this.safechat_continuous_count++;
     if (this.safechat_continuous_count > 10) {
-      this.bot.log('[bot.safechat] *拒绝* 短时间内发送了大量信息');
+      this.bot.log('[bot.safechat] 短时间内发送了大量信息');
       return;
     }
 
     if (elapsed_ms > 3000) {
-     //经过一定时间后会忘记之前的信息
+      //经过一定时间后会忘记之前的信息
       this.safechat_send_text_cache = [];
     }
 
-    if (this.safechat_send_text_cache.find((value)=>{ return value === text; })) {
-      this.bot.log('[bot.safechat] *拒绝* 在一定时间内同一消息被多次发送 : ' + text);
+    if (this.safechat_send_text_cache.find((value) => { return value === text; })) {
+      this.bot.log('[bot.safechat] 在一定时间内同一消息被多次发送: ' + text);
       return;
     }
     this.safechat_send_text_cache.push(text);
@@ -110,7 +111,7 @@ module.exports = function(bot) {
     delay(delay_ms).then(() => { this.safechat(text); });
   }
 
-//随机选择数组中定义的多个语句中的一个，进行聊天发送
+  //随机选择数组中定义的多个语句中的一个，进行聊天发送
   this.bot.randomchat = (messages, delay_ms = 800) => {
     var message;
     if (Array.isArray(messages)) {
