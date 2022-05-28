@@ -12,6 +12,7 @@ function start() {
     username: process.env.MC_USERNAME,
     password: process.env.MC_PASSWORD || '',
     version: process.env.MC_VERSION || '1.16.5',
+    auth: process.env.MC_AUTH || '',
     verbose: true
   });
 
@@ -53,6 +54,7 @@ function start() {
     require('./src/module-chat-hi')(bot); // say Hello to other players
     require('./src/module-chat-death')(bot); // Log when bot died
     require('./src/module-chat-countdown')(bot); // Count Down
+    require('./src/module-auto-chat') // Auto Response
     // require('./src/module-chat-google')(bot); // Search on Google
     require('./src/module-chat-baidu')(bot); // Search on Baidu
     require('./src/module-data-record')(bot); // Data Record
