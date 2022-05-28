@@ -8,7 +8,7 @@ module.exports = function(bot) {
   const defaultMove = new Movements(bot, mcData);
   defaultMove.allowFreeMotion = true;
   
-  // 获取跟踪对象target
+  // 获取跟踪对象Target
   var target_entity = undefined;
 
   function getTargetEntity() {

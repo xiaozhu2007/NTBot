@@ -1,17 +1,14 @@
 module.exports = function(bot) {
   bot.on('chat', (username, message) => {
     const answers = [
+      // 感谢赞助商 weeaxe.cn (小木斧)
       {
         keyword: /^(map|dynmap|地图)/i,
-        answer: 'http://localhost:9999/'
+        answer: 'https://map.weeaxe.cn/'
       },
       {
         keyword: /^(event|home)/i,
-        answer: 'http://kenmomine.wiki.fc2.com/wiki/%E3%82%A4%E3%83%99%E3%83%B3%E3%83%88%E4%BC%81%E7%94%BB/'
-      },
-      {
-        keyword: /^(wiki)/i,
-        answer: 'http://kenmomine.wiki.fc2.com/'
+        answer: 'https://www.weeaxe.cn/'
       },
     ];
 

@@ -7,9 +7,6 @@ module.exports = function(bot) {
   defaultMove.allowFreeMotion = true;
 
   bot.on('chat', (username, message) => {
-    // if (!bot.players[username]) {
-      // return;
-    // }
     if (username === bot.username) {
       return;
     }
