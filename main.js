@@ -1,7 +1,3 @@
-require('dotenv').config();
-const delay = require('delay');
-const mineflayer = require('mineflayer');
-const pathfinder = require('mineflayer-pathfinder').pathfinder;
 /***
  _   _ _____ ____        _   
 | \ | |_   _| __ )  ___ | |_ 
@@ -10,7 +6,16 @@ const pathfinder = require('mineflayer-pathfinder').pathfinder;
 |_| \_| |_| |____/ \___/ \__|
               Powered By NTBot
 **/
+require('dotenv').config();
+const delay = require('delay');
+const mineflayer = require('mineflayer');
+const pathfinder = require('mineflayer-pathfinder').pathfinder;
+
 function start() {
+  /**
+   * @description 主程序
+   * @copyright xiaozhu2007
+   */
   const bot = mineflayer.createBot({
     host: process.env.NT_HOST,
     port: process.env.NT_PORT,
@@ -26,6 +31,11 @@ function start() {
   require('./src/bot-extension')(bot);
 
   function chatAddPattern(bot) {
+    /**
+     * @description 添加聊天解析格式
+     * @global bot
+     * @copyright xiaozhu2007
+     */
     try {
       // bot.addChatPattern('chat', /^(?:\[[^\]]*\])<([^ :]*)> (.*)$/);
       bot.addChatPattern('whisper', /^([^ ]*) 悄悄的对你说 (.*)$/); //FOR 原版
@@ -46,13 +56,14 @@ function start() {
   });
 
   bot.on('connect', () => {
-    bot.log('[bot.connect] 用户: [' + bot.username + ']');
+    bot.log('[bot.connect] Login as user [' + bot.username + ']');
 
     chatAddPattern(bot);
 
-    // 加载模块
+    /** 加载模块 */
     /** @deprecated This will throw an error. */
     // require('./modules/module-action-move')(bot);
+
     /** @deprecated This will throw an error. */
     // require('./modules/module-action-follow')(bot);
 
