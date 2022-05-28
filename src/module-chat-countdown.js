@@ -2,7 +2,8 @@ module.exports = function(bot) {
   bot.on('chat', (username, message) => {
     if (username === bot.username) return;
 
-    if (message.match(/(\w*)\W*(?:倒计时)/) && RegExp.$1 === bot.username) {
+    // TODO: 有人知道怎么正则“倒计时”这个文本吗
+    if (message.match(/^(?:倒计时|djs)$/) && RegExp.match === bot.username) {
       bot.safechat('倒计时', 500);
       bot.safechat('> 3', 3000);
       bot.safechat('> 2', 4000);
