@@ -12,16 +12,16 @@ const pathfinder = require('mineflayer-pathfinder').pathfinder;
 **/
 function start() {
   const bot = mineflayer.createBot({
-    host: process.env.MC_HOST,
-    port: process.env.MC_PORT,
-    username: process.env.MC_USERNAME,
-    password: process.env.MC_PASSWORD || '',
-    version: process.env.MC_VERSION || '1.16.5',
-    auth: process.env.MC_AUTH || '',
+    host: process.env.NT_HOST,
+    port: process.env.NT_PORT,
+    username: process.env.NT_USERNAME,
+    password: process.env.NT_PASSWORD || '',
+    version: process.env.NT_VERSION || '1.16.5',
+    auth: process.env.NT_AUTH || '',
     verbose: true
   });
 
-  console.log('Connecting to [%s:%s](%s)', process.env.MC_HOST, process.env.MC_PORT, bot.version);
+  console.log('Connecting to [%s:%s](%s)', process.env.NT_HOST, process.env.NT_PORT, bot.version);
   bot.loadPlugin(pathfinder);
   require('./src/bot-extension')(bot);
 
@@ -40,8 +40,8 @@ function start() {
     if (bot.hasInterrupt) {
       process.exit(0);
     } else {
-      bot.log('[bot.end] 正在尝试 1 分钟后重新连接...');
-      delay(60000).then(() => { start(); });
+      bot.log('[bot.end] Trying reconnection 30s later...');
+      delay(30000).then(() => { start(); });
     }
   });
 
@@ -51,18 +51,31 @@ function start() {
     chatAddPattern(bot);
 
     // 加载模块
-    // require('./modules/module-action-move')(bot); //报错
+    /** @deprecated This will throw an error. */
+    // require('./modules/module-action-move')(bot);
+    /** @deprecated This will throw an error. */
     // require('./modules/module-action-follow')(bot);
+
     require('./modules/module-logger')(bot); // Better Logger
+
     require('./modules/module-chat-hi')(bot); // say Hello to other players
+
     require('./modules/module-chat-death')(bot); // Log when bot died
+
     require('./modules/module-chat-countdown')(bot); // Count Down
+
     require('./modules/module-auto-chat') // Auto Response
+
     require('./modules/module-chat-google')(bot); // Search on Google
+
     require('./modules/module-chat-baidu')(bot); // Search on Baidu
+
     require('./modules/module-data-record')(bot); // Data Record
+
     require('./modules/module-update')(bot); // Nothing.
+
     require('./modules/module-help')(bot); // The main help menu
+
     require('./modules/module-login')(bot); // Auto Login
   });
   bot.on('error', err => console.log(err));
@@ -76,6 +89,6 @@ process.on('uncaughtException', (err) => {
 
 try {
   start();
-} catch(e) {
+} catch (e) {
   console.error('[bot.error.all] 全局错误 : ' + e);
 }

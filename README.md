@@ -29,10 +29,10 @@ English | [简体中文](./README.zh.md)
 Copy `.env.sample` to `.env`(e.g. `cp .env.sample .env`)
 
 ```env
-MC_HOST="localhost"
-MC_PORT="25565"
-MC_USERNAME="user@foo.bar"
-MC_PASSWORD="password"
+NT_HOST="localhost"
+NT_PORT="25565"
+NT_USERNAME="user@foo.bar"
+NT_PASSWORD="password"
 LOGIN="no"
 LOGIN_PASSWORD="passwd"
 ```

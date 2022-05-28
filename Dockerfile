@@ -1,13 +1,13 @@
 FROM node:14
 WORKDIR /usr/src/app
 
-ENV MC_HOST="localhost"
-ENV MC_PORT="25565"
-ENV MC_USERNAME="anonymous"
-ENV MC_PASSWORD="password"
+ENV NT_HOST="localhost"
+ENV NT_PORT="25565"
+ENV NT_USERNAME="anonymous"
+ENV NT_PASSWORD="password"
 ENV LOGIN_PASSWORD="password"
 ENV LOGIN="no"
-ENV MC_AUTH="mojang"
+ENV NT_AUTH="mojang"
 
 COPY package*.json ./
 
