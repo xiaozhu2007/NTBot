@@ -9,7 +9,7 @@
         "dotenv": "^16.0.0",
         "jsonfile": "^6.1.0",
         "mineflayer": "^4.3.0",
-        "mineflayer-pathfinder": "^1.6.3",
+        "mineflayer-pathfinder": "^2.1.1",
         "node-fetch": "^3.2.4",
         "readline": "^1.3.0",
         "vec3": "^0.1.7"
