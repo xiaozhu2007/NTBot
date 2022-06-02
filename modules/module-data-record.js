@@ -102,7 +102,7 @@ module.exports = function(bot) {
       var value = RegExp.$2.trim();
       
       if (key === bot.username) {
-        bot.safechat('/tell ' + username + ' 什么' + value + '？');
+        bot.safechat('/tell ' + username + ' 什么' + value + '?');
       } else if (key === value) {
         bot.safechat('/tell ' + username + ' 你在说什么')
       } else if (key.startsWith('/') || value.startsWith('/')) {
@@ -113,7 +113,7 @@ module.exports = function(bot) {
         bot.log('[data-record] *拒绝* ' + username + ' 的记忆 ' + key + ':' + value + ' 的注册被拒绝');
       } else {
         record(key, value, username);
-        bot.safechat('いま' + username + 'が教えてくれたんだけど、' + key + 'は ' + value + ' なんだって');
+        bot.safechat('亲爱的' + username + 'が教えてくれたんだけど、' + key + 'は ' + value + ' なんだって');
         bot.log('[data-record] sender: ' + username + ', key: {' + key + '}, value: {' + value + '}');
 
         this.last_record_user = username;
@@ -122,7 +122,7 @@ module.exports = function(bot) {
     }
 
     // 记忆删除
-    if (message.match(/^(?:删除|消去)\s+(\S*)/)) {
+    if (message.match(/^(?:删除)\s+(\S*)/)) {
       var key = RegExp.$1;
       remove(key);
       
