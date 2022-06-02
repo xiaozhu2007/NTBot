@@ -9,3 +9,11 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "daily"
+    # Add assignees
+    assignees:
+      - "xiaozhu2007"
+    commit-message:
+      # Prefix all commit messages with "npm"
+      prefix: "npm"
+      prefix-development: "npm dev"
+      include: "scope"
