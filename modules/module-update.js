@@ -1,8 +1,4 @@
-module.exports = function(bot) {
-
+module.exports = function (bot) {
   /** @deprecated A legacy feature. */
-  bot.on('time', () => {
-    
-  });
-}
-
+  bot.on("time", () => {});
+};

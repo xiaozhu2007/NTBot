@@ -1,5 +1,5 @@
-module.exports = function(bot) {
-  bot.on('chat', (username, message) => {
+module.exports = function (bot) {
+  bot.on("chat", (username, message) => {
     if (username === bot.username) return;
 
     if (message.match(/(^|\()(bd|baidu|百度|查)\s*[\(]?([^\(\)]*)[\)]?/gi)) {
@@ -12,7 +12,10 @@ module.exports = function(bot) {
     if (message.match(/(^|\()(image|img|图片)\s*[\(]?([^\(\)]*)[\)]?/gi)) {
       const keyword = RegExp.$3;
       if (keyword) {
-        bot.safechat(`https://m.baidu.com/sf/vsearch?pd=image_content&word=${keyword}&tn=vsearch&atn=page&sa=vs_img_indexhot&fr=index`, 1000);
+        bot.safechat(
+          `https://m.baidu.com/sf/vsearch?pd=image_content&word=${keyword}&tn=vsearch&atn=page&sa=vs_img_indexhot&fr=index`,
+          1000
+        );
       }
     }
 
@@ -22,6 +25,5 @@ module.exports = function(bot) {
         bot.safechat(`https://map.baidu.com/s?q=${keyword}`, 1000);
       }
     }
-
   });
-}
+};

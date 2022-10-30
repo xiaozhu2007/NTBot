@@ -1,8 +1,8 @@
-const jsonfile = require('jsonfile');
-const filename = 'data.record.json'
+const jsonfile = require("jsonfile");
+const filename = "data.record.json";
 const record_lifetime_ms = 30 * 24 * 60 * 60 * 1000; // 30天
 
-module.exports = function(bot) {
+module.exports = function (bot) {
   this.record = [];
   this.last_record_user = null;
   this.last_record_key = null;
@@ -26,7 +26,7 @@ module.exports = function(bot) {
       key: key,
       value: value,
       teacher: teacher,
-      expire_at: get_expire_at()
+      expire_at: get_expire_at(),
     });
 
     jsonfile.writeFileSync(filename, this.record);
@@ -46,9 +46,9 @@ module.exports = function(bot) {
   function expire() {
     var expired = [];
     this.record.forEach((r) => {
-      bot.log('[data-record] ' + Date.now() + ': ' + r.expire_at)
+      bot.log("[data-record] " + Date.now() + ": " + r.expire_at);
       if (Date.now() > r.expire_at) {
-        bot.log('[data-record] expired [' + r.key + ']: ' + r.value)
+        bot.log("[data-record] expired [" + r.key + "]: " + r.value);
         expired.push(r.key);
       }
     });
@@ -57,17 +57,21 @@ module.exports = function(bot) {
     });
   }
 
-  bot.on('chat', (username, message) => {
+  bot.on("chat", (username, message) => {
     if (username === bot.username) return;
 
     // 記憶データの各キーワードとマッチ判定を行い、
     // 該当する文言があればvalueをチャットに出力する
     if (this.record) {
       this.record.forEach((r) => {
-        if (message.match(new RegExp('^' + r.key + "$", 'i'))) {
-          var m = r.key + 'は' + r.value.replace(new RegExp('^\/', '')) + ' ';
-          bot.randomchat([m, m + ' だって' + r.teacher + 'が言ってた', r.teacher + 'によると ' + m + ' なんだって']);
-  
+        if (message.match(new RegExp("^" + r.key + "$", "i"))) {
+          var m = r.key + "は" + r.value.replace(new RegExp("^/", "")) + " ";
+          bot.randomchat([
+            m,
+            m + " だって" + r.teacher + "が言ってた",
+            r.teacher + "によると " + m + " なんだって",
+          ]);
+
           // 使われた記憶は寿命を延ばす
           r.expire_at = get_expire_at();
         }
@@ -75,8 +79,11 @@ module.exports = function(bot) {
     }
 
     // 撤销(相当于Undo功能)
-    if (username === last_record_user && message.match(/^(?:淦|嘘)(?:undo|撤)/)) {
-      bot.safechat('OK');
+    if (
+      username === last_record_user &&
+      message.match(/^(?:淦|嘘)(?:undo|撤)/)
+    ) {
+      bot.safechat("OK");
       remove(this.last_record_key);
 
       this.last_record_user = null;
@@ -84,15 +91,15 @@ module.exports = function(bot) {
     }
   });
 
-  bot.on('whisper', (username, message) => {
+  bot.on("whisper", (username, message) => {
     // どんなデータを記憶しているかどうかを確認する手段
     if (message.match(/^记忆$/)) {
       if (this.record && this.record.length > 0) {
         this.record.forEach((r) => {
-          bot.safechat('/r ' + r.key + ' : ' + r.value);
+          bot.safechat("/r " + r.key + " : " + r.value);
         });
       } else {
-        bot.safechat('/r OK');
+        bot.safechat("/r OK");
       }
     }
 
@@ -100,21 +107,53 @@ module.exports = function(bot) {
     if (message.match(/^(?:记忆|保存)\s+(\S+)\s+(\S*)/)) {
       var key = RegExp.$1.trim();
       var value = RegExp.$2.trim();
-      
+
       if (key === bot.username) {
-        bot.safechat('/tell ' + username + ' 什么' + value + '?');
+        bot.safechat("/tell " + username + " 什么" + value + "?");
       } else if (key === value) {
-        bot.safechat('/tell ' + username + ' 你在说什么')
-      } else if (key.startsWith('/') || value.startsWith('/')) {
-        bot.safechat('/tell ' + username + ' 命令是记不住的')
-        bot.log('[data-record] *拒绝* ' + username + ' 的记忆 ' + key + ':' + value + ' 的注册被拒绝');
-      } else if (key.startsWith('.') || value.startsWith('.')) {
-        bot.safechat('/tell ' + username + ' HackClient的命令是记不住的')
-        bot.log('[data-record] *拒绝* ' + username + ' 的记忆 ' + key + ':' + value + ' 的注册被拒绝');
+        bot.safechat("/tell " + username + " 你在说什么");
+      } else if (key.startsWith("/") || value.startsWith("/")) {
+        bot.safechat("/tell " + username + " 命令是记不住的");
+        bot.log(
+          "[data-record] *拒绝* " +
+            username +
+            " 的记忆 " +
+            key +
+            ":" +
+            value +
+            " 的注册被拒绝"
+        );
+      } else if (key.startsWith(".") || value.startsWith(".")) {
+        bot.safechat("/tell " + username + " HackClient的命令是记不住的");
+        bot.log(
+          "[data-record] *拒绝* " +
+            username +
+            " 的记忆 " +
+            key +
+            ":" +
+            value +
+            " 的注册被拒绝"
+        );
       } else {
         record(key, value, username);
-        bot.safechat('亲爱的' + username + 'が教えてくれたんだけど、' + key + 'は ' + value + ' なんだって');
-        bot.log('[data-record] sender: ' + username + ', key: {' + key + '}, value: {' + value + '}');
+        bot.safechat(
+          "亲爱的" +
+            username +
+            "が教えてくれたんだけど、" +
+            key +
+            "は " +
+            value +
+            " なんだって"
+        );
+        bot.log(
+          "[data-record] sender: " +
+            username +
+            ", key: {" +
+            key +
+            "}, value: {" +
+            value +
+            "}"
+        );
 
         this.last_record_user = username;
         this.last_record_key = key;
@@ -125,8 +164,8 @@ module.exports = function(bot) {
     if (message.match(/^(?:删除)\s+(\S*)/)) {
       var key = RegExp.$1;
       remove(key);
-      
-      bot.log('[data-record] sender: ' + username + ', key: {' + key + '}');
+
+      bot.log("[data-record] sender: " + username + ", key: {" + key + "}");
     }
   });
-}
+};

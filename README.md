@@ -16,12 +16,12 @@ English | [简体中文](./README.zh.md)
 - Auto Login
 - CLI Support
 
-
 ## Installtion
+
 ```bash
     $ git clone https://gitee.com/xiaozhu2007/NTBot
     $ cd NTBot
-    $ npm install
+    $ pnpm install
 ```
 
 ### Set the environment
@@ -39,8 +39,8 @@ LOGIN_PASSWORD="passwd"
 
 ## Usage
 
-
 ### Start
+
 ```txt
     $ npm start
 ```
@@ -66,4 +66,5 @@ docker run -d \
 [WTFPL](LICENSE)
 
 ## Ref
- * TemzinBot
+
+- TemzinBot

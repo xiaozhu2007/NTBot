@@ -1,6 +1,6 @@
 # NTBot
 
-> 一个用Mineflayer做的Minecraft机器人
+> 一个用 Mineflayer 做的 Minecraft 机器人
 
 [![Open in Visual Studio Code Online](https://img.shields.io/badge/-open%20in%20vscode-blue?style=for-the-badge&logo=visualstudiocode)](https://open.vscode.dev/xiaozhu2007/NTBot) ![Next Version](https://img.shields.io/npm/v/ntbot/next.svg?style=for-the-badge&logo=npm) ![Beta Version](https://img.shields.io/npm/v/ntbot/beta.svg?style=for-the-badge&logo=npm) ![Downloads](https://img.shields.io/npm/dw/ntbot?logo=npm&style=for-the-badge) ![Total downloads](https://img.shields.io/npm/dt/ntbot?style=for-the-badge&logo=npm)
 
@@ -18,8 +18,8 @@
 - 自动登录
 - 命令行支持
 
-
 ## 安装
+
 ```bash
     $ git clone https://gitee.com/xiaozhu2007/NTBot
     $ cd NTBot
@@ -41,16 +41,15 @@ LOGIN_PASSWORD="passwd"
 
 ## 用法
 
-
 ### 启动
 
 ```txt
     $ npm start
 ```
 
-## 用Docker启动
+## 用 Docker 启动
 
-### 建设Docker镜像
+### 建设 Docker 镜像
 
 ```bash
 docker build -t <yourname>/NTBot .
@@ -69,4 +68,5 @@ docker run -d \
 [WTFPL](LICENSE)
 
 ## 引用自
- * TemzinBot
+
+- TemzinBot

@@ -1,47 +1,70 @@
 {
-    "name": "ntbot",
-    "version": "1.0.0-beta.3",
-    "description": "NTBot, a Minecraft bot based on Mineflayer.",
-    "main": "main.js",
-    "dependencies": {
-        "dateformat": "^5.0.3",
-        "delay": "^5.0.0",
-        "dotenv": "^16.0.0",
-        "jsonfile": "^6.1.0",
-        "mineflayer": "^4.3.0",
-        "mineflayer-pathfinder": "^2.1.1",
-        "node-fetch": "^3.2.5",
-        "readline": "^1.3.0",
-        "vec3": "^0.1.7"
-    },
-    "devDependencies": {
-        "commitizen": "^4.2.4",
-        "minimist": "1.2.6"
-    },
-    "scripts": {
-        "start": "node main.js",
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "debug": "DEBUG=\"minecraft-protocol\" node main.js"
-    },
-    "author": {
-        "url": "https://github.com/xiaozhu2007",
-        "email": "lz19986912007@163.com",
-        "name": "xiaozhu2007"
-    },
-    "contributors": [
-        "AGDDoS-bot <3356136957@qq.com>"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/xiaozhu2007/NTBot"
-    },
-    "license": "WTFPL",
-    "homepage": "https://github.com/xiaozhu2007/NTBot#readme",
-    "bugs": {
-        "url": "https://github.com/xiaozhu2007/NTBot/issues"
-    },
-    "funding": {
-        "type": "individual",
-        "url": "https://xiaozhu2007.github.io/"
-    }
+  "name": "ntbot",
+  "version": "1.0.0-beta.5",
+  "description": "NTBot, a Minecraft bot based on Mineflayer.",
+  "main": "main.js",
+  "type": "module",
+  "dependencies": {
+    "@types/node": "*",
+    "cac": "^6.7.12",
+    "chalk": "^5.0.1",
+    "cross-env": "^7.0.3",
+    "dateformat": "^5.0.3",
+    "delay": "^5.0.0",
+    "dotenv": "^16.0.0",
+    "execa": "^6.1.0",
+    "inquirer": "^8.2.4",
+    "jsonfile": "^6.1.0",
+    "mineflayer": "^4.3.0",
+    "mineflayer-pathfinder": "^2.1.1",
+    "node-fetch": "^3.2.5",
+    "ora": "^6.1.0",
+    "pnpm": "^7.1.8",
+    "prettier": "^2.6.2",
+    "readline": "^1.3.0",
+    "ts-node": "10.8.1",
+    "tslib": "2.4.0",
+    "typescript": "4.7.3",
+    "vec3": "^0.1.7"
+  },
+  "devDependencies": {
+    "@types/dateformat": "^5.0.0",
+    "@types/inquirer": "^8.2.1",
+    "minimist": "1.2.6"
+  },
+  "scripts": {
+    "start": "node main.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "debug": "DEBUG=\"minecraft-protocol\" node main.js",
+    "lint": "pnpm lint:prettier --write && pnpm lint:eslint --fix && pnpm lint:stylelint --fix",
+    "lint:check": "pnpm lint:prettier && pnpm lint:eslint && pnpm lint:stylelint",
+    "lint:eslint": "eslint . --ext .js,.ts",
+    "lint:md": "markdownlint **/*.md",
+    "lint:prettier": "prettier --check .",
+    "lint:stylelint": "stylelint packages/*/src/**/*.scss",
+    "release": "pnpm release:commit && pnpm clean && pnpm build && pnpm release:publish",
+    "release:commit": "git add CHANGELOG.md && git commit -m \"chore(release): publish\"",
+    "release:publish": "cross-env NODE_OPTIONS=\"--experimental-json-modules\" ts-node-esm ./scripts/release"
+  },
+  "author": {
+    "url": "https://github.com/xiaozhu2007",
+    "email": "lz19986912007@163.com",
+    "name": "xiaozhu2007"
+  },
+  "contributors": [
+    "AGDDoS-bot <3356136957@qq.com>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xiaozhu2007/NTBot"
+  },
+  "license": "WTFPL",
+  "homepage": "https://github.com/xiaozhu2007/NTBot#readme",
+  "bugs": {
+    "url": "https://github.com/xiaozhu2007/NTBot/issues"
+  },
+  "funding": {
+    "type": "individual",
+    "url": "https://xiaozhu2007.github.io/"
+  }
 }
