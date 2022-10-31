@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@types/dateformat": "^5.0.0",
-    "@types/inquirer": "^8.2.1",
+    "@types/inquirer": "^9.0.2",
     "minimist": "1.2.6"
   },
   "scripts": {
