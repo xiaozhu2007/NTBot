@@ -31,4 +31,4 @@ export default function (bot) {
       bot.pathfinder.setGoal(null);
     }
   });
-};
+}

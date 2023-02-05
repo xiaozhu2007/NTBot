@@ -4,8 +4,6 @@
   "description": "HTMC, a Minecraft bot based on Mineflayer.",
   "main": "main.js",
   "dependencies": {
-    "cac": "^6.7.12",
-    "chalk": "^5.0.1",
     "cross-env": "^7.0.3",
     "dateformat": "4.5.1",
     "delay": "^5.0.0",
@@ -15,22 +13,26 @@
     "jsonfile": "^6.1.0",
     "mineflayer": "^4.8.0",
     "mineflayer-pathfinder": "^2.1.1",
-    "mineflayer-web-inventory": "^1.8.3",
     "node-fetch": "^3.2.5",
-    "ora": "^6.1.0",
-    "prettier": "^2.6.2",
     "readline": "^1.3.0",
     "vec3": "^0.1.7"
   },
   "devDependencies": {
-    "minimist": "1.2.6"
+    "cac": "^6.7.12",
+    "chalk": "^5.0.1",
+    "eslint": "^8.33.0",
+    "markdownlint": "^0.27.0",
+    "mineflayer-web-inventory": "^1.8.3",
+    "minimist": "1.2.6",
+    "ora": "^6.1.0",
+    "prettier": "^2.6.2"
   },
   "scripts": {
     "start": "node main.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "debug": "DEBUG=\"minecraft-protocol\" node main.js",
     "lint": "pnpm lint:prettier --write && pnpm lint:eslint --fix",
-    "lint:check": "pnpm lint:prettier && pnpm lint:eslint && pnpm lint:stylelint",
+    "lint:check": "pnpm lint:prettier && pnpm lint:eslint && pnpm lint:md",
     "lint:eslint": "eslint . --ext .js",
     "lint:md": "markdownlint **/*.md",
     "lint:prettier": "prettier --check ."
