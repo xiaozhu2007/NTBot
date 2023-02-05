@@ -11,7 +11,7 @@
     "delay": "^5.0.0",
     "dotenv": "^16.0.0",
     "execa": "^6.1.0",
-    "inquirer": "^8.2.4",
+    "inquirer": "^9.1.4",
     "jsonfile": "^6.1.0",
     "mineflayer": "^4.8.0",
     "mineflayer-pathfinder": "^2.1.1",
