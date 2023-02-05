@@ -1,9 +1,8 @@
-import dateformat from "dateformat";
-import delay from "delay";
-import { createInterface, cursorTo } from "readline";
+const dateformat = require('dateformat');
+const delay = require('delay');
+const readline = require('readline');
 
-// @ts-ignore
-export default function (bot) {
+module.exports = function (bot) {
   this.bot = bot;
   this.bot.hasInterrupt = false;
 
@@ -22,12 +21,13 @@ export default function (bot) {
 
   // 输入处理
   this.bot.init_readline = () => {
-    this.rl = createInterface({ input: process.stdin, output: process.stdout });
-    this.rl.setPrompt("NTBot> "); //输入头
+    this.rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+    this.rl.setPrompt("HTMC> "); //输入头
 
     // 输入信息即发送
     this.rl.on("line", (line) => {
       this.safechat(line);
+      // this.bot.chat(line);
     });
 
     this.rl.on("SIGINT", () => {
@@ -46,7 +46,7 @@ export default function (bot) {
   // Prompt处理
   // @ts-ignore
   this.bot.log = (...args) => {
-    cursorTo(process.stdout, 0);
+    readline.cursorTo(process.stdout, 0);
 
     if (typeof args[0] === "string") {
       // 插入现在时间
@@ -101,7 +101,7 @@ export default function (bot) {
     }
 
     if (
-      this.safechat_send_text_cache.find((value) => {
+      this.safechat_send_text_cache.find((value) => { 
         return value === text;
       })
     ) {
@@ -131,9 +131,9 @@ export default function (bot) {
     } else {
       message = messages;
     }
-    // @ts-ignore
     delay(delay_ms).then(() => {
       this.safechat(message);
     });
   };
+
 }

@@ -1,50 +1,39 @@
 {
-  "name": "ntbot",
-  "version": "1.0.0-beta.5",
-  "description": "NTBot, a Minecraft bot based on Mineflayer.",
+  "name": "htmc",
+  "version": "1.0.0-beta.7",
+  "description": "HTMC, a Minecraft bot based on Mineflayer.",
   "main": "main.js",
-  "type": "module",
   "dependencies": {
-    "@types/node": "*",
     "cac": "^6.7.12",
     "chalk": "^5.0.1",
     "cross-env": "^7.0.3",
-    "dateformat": "^5.0.3",
+    "dateformat": "4.5.1",
     "delay": "^5.0.0",
     "dotenv": "^16.0.0",
     "execa": "^6.1.0",
     "inquirer": "^8.2.4",
     "jsonfile": "^6.1.0",
-    "mineflayer": "^4.3.0",
+    "mineflayer": "^4.8.0",
     "mineflayer-pathfinder": "^2.1.1",
+    "mineflayer-web-inventory": "^1.8.3",
     "node-fetch": "^3.2.5",
     "ora": "^6.1.0",
-    "pnpm": "^7.1.8",
     "prettier": "^2.6.2",
     "readline": "^1.3.0",
-    "ts-node": "10.8.1",
-    "tslib": "2.4.0",
-    "typescript": "4.7.3",
     "vec3": "^0.1.7"
   },
   "devDependencies": {
-    "@types/dateformat": "^5.0.0",
-    "@types/inquirer": "^8.2.1",
     "minimist": "1.2.6"
   },
   "scripts": {
     "start": "node main.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "debug": "DEBUG=\"minecraft-protocol\" node main.js",
-    "lint": "pnpm lint:prettier --write && pnpm lint:eslint --fix && pnpm lint:stylelint --fix",
+    "lint": "pnpm lint:prettier --write && pnpm lint:eslint --fix",
     "lint:check": "pnpm lint:prettier && pnpm lint:eslint && pnpm lint:stylelint",
-    "lint:eslint": "eslint . --ext .js,.ts",
+    "lint:eslint": "eslint . --ext .js",
     "lint:md": "markdownlint **/*.md",
-    "lint:prettier": "prettier --check .",
-    "lint:stylelint": "stylelint packages/*/src/**/*.scss",
-    "release": "pnpm release:commit && pnpm clean && pnpm build && pnpm release:publish",
-    "release:commit": "git add CHANGELOG.md && git commit -m \"chore(release): publish\"",
-    "release:publish": "cross-env NODE_OPTIONS=\"--experimental-json-modules\" ts-node-esm ./scripts/release"
+    "lint:prettier": "prettier --check ."
   },
   "author": {
     "url": "https://github.com/xiaozhu2007",
@@ -52,7 +41,7 @@
     "name": "xiaozhu2007"
   },
   "contributors": [
-    "AGDDoS-bot <3356136957@qq.com>"
+    "HelloTools-bot <3356136957@qq.com>"
   ],
   "repository": {
     "type": "git",
@@ -65,6 +54,6 @@
   },
   "funding": {
     "type": "individual",
-    "url": "https://xiaozhu2007.github.io/"
+    "url": "https://afdian.net/a/xiaozhu2021"
   }
 }

@@ -9,16 +9,17 @@
 const delay = require("delay");
 const mineflayer = require("mineflayer");
 const pathfinder = require("mineflayer-pathfinder").pathfinder;
+
 function start() {
   /**
    * @description 主程序
    */
   const bot = mineflayer.createBot({
-    host: process.env.NT_HOST,
-    port: process.env.NT_PORT,
-    username: process.env.NT_USERNAME,
+    host: process.env.NT_HOST || "mc.weeaxe.cn",
+    port: process.env.NT_PORT || 25565,
+    username: process.env.NT_USERNAME || "_ssdhbfbcb_",
     password: process.env.NT_PASSWORD || "",
-    version: process.env.NT_VERSION || "1.16.5",
+    version: process.env.NT_VERSION || "1.19.1",
     auth: process.env.NT_AUTH || "",
     verbose: true,
   });
@@ -39,8 +40,9 @@ function start() {
      * @copyright xiaozhu2007
      */
     try {
-      // bot.addChatPattern('chat', /^(?:\[[^\]]*\])<([^ :]*)> (.*)$/);
-      bot.addChatPattern("whisper", /^([^ ]*) 悄悄的对你说 (.*)$/); //FOR 原版
+      // bot.addChatPatternSet('chat', /^(?:\[[^\]]*\])[([^ :]*)] (.*)$/);
+      // bot.addChatPatternSet('chat', /^(?:\[[^\]]*\])<([^ :]*)> (.*)$/);
+      bot.addChatPatternSet("whisper", /^([^ ]*) 悄悄的对你说 (.*)$/); //FOR 原版
       // bot.addChatPattern('whisper', /^([^ ]*) -> (.*)$/); //FOR 其他非原版服务器
     } catch (e) {
       console.log("[bot.error.addChatPattern] " + e);
