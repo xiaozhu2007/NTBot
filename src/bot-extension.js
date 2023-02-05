@@ -47,7 +47,7 @@ module.exports = function (bot) {
     }
 
     // Prompt处理
-    // @ts-ignore
+
     this.bot.log = (...args) => {
         readline.cursorTo(process.stdout, 0)
 
@@ -61,30 +61,27 @@ module.exports = function (bot) {
     }
 
     //从jmes形式的信息中只抽出文本成分并以字符串形式返回
-    // @ts-ignore
+
     this.bot.jmes_to_text = (jmes) => {
         var message = ""
         if (jmes.text) message = jmes.text
 
         if (jmes.extra)
-        // @ts-ignore
-            jmes.extra.forEach((v, i, a) => {
+            jmes.extra.forEach((v) => {
                 message += v.text
             })
         return message
     }
 
     //加入防止同一信息循环发送、短时间内大量发送等措施的聊天发送方法
-    // @ts-ignore
     this.safechat_send_text_cache = []
     this.safechat_last_send_time = new Date().getTime()
     this.safechat_continuous_count = 0
 
-    // @ts-ignore
     this.safechat = (text) => {
         var current_time = new Date().getTime()
-        // @ts-ignore
-        var elapsed_ms = current_time - safechat_last_send_time
+
+        var elapsed_ms = current_time - this.safechat_last_send_time
 
         if (!text) return
 
@@ -117,7 +114,6 @@ module.exports = function (bot) {
         this.bot.chat(text)
     }
 
-    // @ts-ignore
     this.bot.safechat = (text, delay_ms = 800) => {
         delay(delay_ms).then(() => {
             this.safechat(text)
@@ -125,9 +121,8 @@ module.exports = function (bot) {
     }
 
     //随机选择数组中定义的多个语句中的一个，进行聊天发送
-    // @ts-ignore
+
     this.bot.randomchat = (messages, delay_ms = 800) => {
-    // @ts-ignore
         var message
         if (Array.isArray(messages)) {
             message = messages[Math.floor(Math.random() * messages.length)]

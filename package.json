@@ -31,7 +31,7 @@
     "start": "node main.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "debug": "DEBUG=\"minecraft-protocol\" node main.js",
-    "lint": "pnpm lint:prettier --write && pnpm lint:eslint --fix",
+    "lint": "pnpm lint:eslint --fix",
     "lint:check": "pnpm lint:prettier && pnpm lint:eslint && pnpm lint:md",
     "lint:eslint": "eslint . --ext .js",
     "lint:md": "markdownlint **/*.md",

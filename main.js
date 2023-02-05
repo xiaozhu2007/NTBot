@@ -42,7 +42,7 @@ function start() {
         try {
             // bot.addChatPatternSet('chat', /^(?:\[[^\]]*\])[([^ :]*)] (.*)$/);
             // bot.addChatPatternSet('chat', /^(?:\[[^\]]*\])<([^ :]*)> (.*)$/);
-            // bot.addChatPatternSet("whisper", /^([^ ]*) 悄悄的对你说 (.*)$/); //FOR 原版
+            bot.addChatPatternSet("whisper", /^([^ ]*) 悄悄的对你说 (.*)$/) //FOR 原版
             // bot.addChatPattern('whisper', /^([^ ]*) -> (.*)$/); //FOR 其他非原版服务器
         } catch (e) {
             console.log("[bot.error.addChatPattern] " + e)
@@ -83,12 +83,6 @@ function start() {
 
         require("./modules/module-auto-chat") // Auto Response
 
-        require("./modules/module-chat-google")(bot) // Search on Google
-
-        require("./modules/module-chat-baidu")(bot) // Search on Baidu
-
-        require("./modules/module-data-record")(bot) // Data Record
-
         require("./modules/module-update")(bot) // Nothing.
 
         require("./modules/module-help")(bot) // The main help menu
@@ -100,7 +94,7 @@ function start() {
 
 process.on("uncaughtException", (err) => {
     console.log("[process.uncaughtException] " + err)
-    bot.log("[process.uncaughtException] Trying reconnection 30s later...")
+    this.bot.log("[process.uncaughtException] Trying reconnection 30s later...")
     delay(30000).then(() => {
         start()
     })

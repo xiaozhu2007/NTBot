@@ -1,8 +1,6 @@
-const delay = require("delay")
 const Vec3 = require("vec3").Vec3
 const Movements = require("mineflayer-pathfinder").Movements
-const { GoalNear, GoalFollow, GoalInvert } =
-  require("mineflayer-pathfinder").goals
+const { GoalFollow, GoalInvert } = require("mineflayer-pathfinder").goals
 
 module.exports = function (bot) {
     const mcData = require("minecraft-data")(bot.version)
