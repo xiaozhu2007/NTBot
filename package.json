@@ -23,7 +23,7 @@
     "eslint": "^8.33.0",
     "markdownlint": "^0.27.0",
     "mineflayer-web-inventory": "^1.8.3",
-    "minimist": "1.2.6",
+    "minimist": "1.2.8",
     "ora": "^6.1.0",
     "prettier": "^2.6.2"
   },
